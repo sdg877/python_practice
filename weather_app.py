@@ -10,7 +10,7 @@ class WeatherApp(QWidget):
         self.city_input = QLineEdit(self)
         self.get_weather_button = QPushButton("Get Weather", self)
         self.temperature_label = QLabel("8°C", self)
-        self.emoji_label = QLabel("")
+        self.emoji_label = QLabel("☀️", self)
         
 if __name__ == "__main__":
     app = QApplication(sys.argv)
