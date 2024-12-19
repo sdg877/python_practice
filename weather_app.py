@@ -33,6 +33,13 @@ class WeatherApp(QWidget):
         self.temperature_label.setAlignment(Qt.AlignCenter)
         self.emoji_label.setAlignment(Qt.AlignCenter)
         self.description_label.setAlignment(Qt.AlignCenter)
+        
+        self.city_label.setObjectName("city_label")
+        self.city_input.setObjectName("city_input")
+        self.temperature_label.setObjectName("temperature_label")
+        self.get_weather_button.setObjectName("get_weather_button")
+        self.emoji_label.setObjectName("emoji_label")
+        self.description_label.setObjectName("description_label")
 
     
 if __name__ == "__main__":
