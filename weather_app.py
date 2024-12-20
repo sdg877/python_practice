@@ -86,7 +86,7 @@ class WeatherApp(QWidget):
             if data["cod"] == 200:
                 self.display_weather(data)
                 
-        except requests.exceptions.HTTPError:
+        except requests.exceptions.HTTPError as HTTPError:
             if response.status_code == 400:
                 print("Bad Request\n Please check your input")
             elif response.status_code == 401:
@@ -97,6 +97,16 @@ class WeatherApp(QWidget):
                 print("Not Found\n Please check your input")
             elif response.status_code == 500:
                 print("Internal Server Error\n Please try again later")
+            elif response.status_code == 502:
+                print("Bad Gateway/n Invalid response")
+            elif response.status_code == 503:
+                print("Service Unavailable\n Server is Down")
+            elif response.status_code == 504:
+                print("Gateway Timeout\nNo response from the server")
+            else:
+                print(f"HTTP error occured\n{HTTPError}")
+                
+            
 
 
             
