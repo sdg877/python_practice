@@ -80,11 +80,27 @@ class WeatherApp(QWidget):
             
         try:
             response = requests.get(url)
+            response.raise_for_status()
             data = response.json()
                 
             if data["cod"] == 200:
                 self.display_weather(data)
+                
         except requests.exceptions.HTTPError:
+            if response.status_code == 400:
+                print("Bad Request\n Please check your input")
+            elif response.status_code == 401:
+                print("Unauthorized\n Please check your input")
+            elif response.status_code == 403:
+                print("Forbidden\n Please check your input")
+            elif response.status_code == 404:
+                print("Not Found\n Please check your input")
+            elif response.status_code == 500:
+                print("Internal Server Error\n Please try again later")
+
+
+            
+        except requests.exceptions.RequestException:
             pass
 
         
