@@ -57,7 +57,7 @@ class WeatherApp(QWidget):
                                font-size: 40px;
                            }
                            QPushButton#get_weather_button{
-                               font-size: 50px;
+                               font-size: 30px;
                                font-weight: bold;
                            }
                            QLabel#temperature_label{
@@ -106,13 +106,14 @@ class WeatherApp(QWidget):
             else:
                 print(f"HTTP error occured\n{HTTPError}")
                 
-            
-
-
-            
-        except requests.exceptions.RequestException:
-            pass
-
+        except requests.exceptions.ConnectionError:
+            print("Connection Error:\nCheck your internet connection!")
+        except requests.exceptions.Timeout:
+            print("Timeout Error:\nThe request timed out")
+        except requests.exceptions.TooManyRedirects:
+            print("Too many redirects:\nCheck the URL")
+        except requests.exceptions.RequestException as e:
+            print(f"Request Error:\n{e}")
         
     def display_error(self, message):
         pass
