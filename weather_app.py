@@ -43,7 +43,7 @@ class WeatherApp(QWidget):
         
         self.setStyleSheet("""
                            QLabel, QPushButton {
-                               font-family: calibri;
+                               font-family: "Calibri";
                            }
                            QLabel#city_label{
                                font-size: 40px;
@@ -53,9 +53,18 @@ class WeatherApp(QWidget):
                                font-size: 40px;
                            }
                            QPushButton#get_weather_button{
-                               font-size: 30px;
+                               font-size: 50px;
                                font-weight: bold;
                            }
+                           QLabel#temperature_label{
+                               font-size: 75px;
+                           }
+                           QLabel#emoji_label{
+                               font-size: 100px;
+                               font-family: "Segoe UI Emoji";
+                           }
+                           QLabel#description_label:
+                           font-size: 50px;
                            """)
 
     
