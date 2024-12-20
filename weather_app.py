@@ -73,25 +73,22 @@ class WeatherApp(QWidget):
         self.get_weather_button.clicked.connect(self.get_weather)
         
         
-        
-        
-        def get_weather(self):
+    def get_weather(self):
  
-            city = self.city_input.text()
-            url = f"https://api.openweathermap.org/data/2.5/weather?q={city}&appid={self.api_key}"
+        city = self.city_input.text()
+        url = f"https://api.openweathermap.org/data/2.5/weather?q={city}&appid={self.api_key}"
             
-            response = requests.get(url)
-            data = response.json()
+        response = requests.get(url)
+        data = response.json()
             
-            print(data)
+        print(data)
         
-        def display_error(self, message):
-            pass
+    def display_error(self, message):
+        pass
         
-        def display_weather(self, data):
-            pass
+    def display_weather(self, data):
+        pass
 
-  
   
     
 if __name__ == "__main__":
