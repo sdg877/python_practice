@@ -54,7 +54,7 @@ class WeatherApp(QWidget):
                                font-style: italic;
                            }
                            QLineEdit#city_input{
-                               font-size: 40px;
+                               font-size: 20px;
                            }
                            QPushButton#get_weather_button{
                                font-size: 30px;
@@ -122,7 +122,8 @@ class WeatherApp(QWidget):
     def display_weather(self, data):
         temperature_k = data["main"]["temp"]
         temperature_c = temperature_k - 273.15
-        print(temperature_c)
+        
+        self.temperature_label.setText(f"{temperature_c}ºC")
 
   
     
