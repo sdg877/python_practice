@@ -15,14 +15,16 @@ maze = [
     ["#", "#", "#", "#", "#", "#", "#", "X", "#"],
 ]
 
-
 def print_maze(maze, stdscr, path=[]):
     BLUE = curses.color_pair(1)
     RED = curses.color_pair(2)
 
     for i, row in enumerate(maze):
         for j, value in enumerate(row):
-            stdscr.addstr(i, j*2, value, BLUE)
+            if (i, j) in path:
+                stdscr.addstr(i, j*2, "X", RED)
+            else: 
+                stdscr.addstr(i, j*2, value, BLUE)
 
 
 def find_start(maze, start):
@@ -30,6 +32,7 @@ def find_start(maze, start):
         for j, value in enumerate(row):
             if value == start:
                 return i, j
+            
     return None
 
 def find_path(maze, stdscr):
@@ -38,7 +41,7 @@ def find_path(maze, stdscr):
     start_pos = find_start(maze, start)
     
     q = queue.Queue()
-    q.put((start_pos), [start_pos])
+    q.put((start_pos, [start_pos]))
     
     visited = set()
     
@@ -46,8 +49,26 @@ def find_path(maze, stdscr):
         current_pos, path = q.get()
         row, col = current_pos
         
+        stdscr.clear()
+        print_maze(maze, stdscr, path)
+        time.sleep(0.2)
+        stdscr.refresh()
+        
         if maze[row][col] == end:
             return path
+        
+        neighbours = find_neighbours(maze, row, col)
+        for neighbour in neighbours:
+            if neighbour in visited:
+                continue
+            
+            r, c = neighbour
+            if maze[r][c] == "#":
+                continue
+            
+            new_path = path + [neighbour]    
+            q.put((neighbour, new_path))
+            visited.add(neighbour)
 
 def find_neighbours(maze, row, col):
     neighbours = []
@@ -66,12 +87,9 @@ def find_neighbours(maze, row, col):
 
 def main(stdscr):
     curses.init_pair(1, curses.COLOR_BLUE, curses.COLOR_BLACK)
-    curses.init_pair(1, curses.COLOR_RED, curses.COLOR_BLACK)
+    curses.init_pair(2, curses.COLOR_RED, curses.COLOR_BLACK)
 
-
-    stdscr.clear()
-    print_maze(maze, stdscr)
-    stdscr.refresh()
+    find_path(maze, stdscr)
     stdscr.getch()
 
 wrapper(main)
