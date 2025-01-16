@@ -1,0 +1,17 @@
+{"intents": [
+    {"tag": "greeting",
+    "patterns": ["Hi", "How are you?", "Is anyone there?", "Hello", "Good day", "Good morning", "What's up"],
+    "responses": ["Hello!", "Good to see you again!", "Hi, how can I help?"],
+    "context_set": ""
+    },
+    {"tag": "goodbye",
+    "patterns": ["Bye", "Good bye", "I am leaving", "I'm off"],
+    "responses": ["Have a good day!", "Goodbye!", "Bye"],
+    "context_set": ""
+    },
+    {"tag": "cats",
+    "patterns": "Do you have any cats?",
+    "responses": "I have 2 cats, Kitty & Osborne.",
+    "context_set": ""
+    }
+]}
