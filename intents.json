@@ -13,5 +13,10 @@
     "patterns": "Do you have any cats?",
     "responses": "I have 2 cats, Kitty & Osborne.",
     "context_set": ""
+    },
+    {"tag": "facts",
+    "patterns": ["Give me a fact", "Fact", "Facts please", "New fact"],
+    "responses": ["Koalas have fingerprints", "Birds are descended from dinosaurs", "Dolphins name each other", "Everyone has a unique tongue print"],
+    "context_set": ""
     }
 ]}
